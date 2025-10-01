@@ -156,33 +156,7 @@ app.post("/login", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    // forgot password route
-    app.post("/forgot-password", async (req, res) => {
-      const { email } = req.body;
-      const conn = await pool.getConnection();
-      const [rows] = await conn.query("SELECT * FROM users WHERE email = ?", [email]);
-      conn.release();
-      
-      if (rows.length === 0) {
-        return res.status(401).json({ message: "❌ Invalid email" });
-      }
-
-      const user = rows[0];
-      const token = jwt.sign(
-        { 
-          id: user.id, 
-          email: user.email 
-        }, 
-        SECRET_KEY, 
-        { expiresIn: "1h" }
-      );
-    });
-    res.json({ token });
-  } catch (err) {
-    console.error("Forgot password error:", err);
-    res.status(500).json({ message: "❌ Internal server error" });
-  }
-});
+    
 
     // Store token in localStorage (for development)
     localStorage.setItem('token', token);
