@@ -22,7 +22,7 @@ export default function Login() {
         </div>
         
         {/* Copyright Footer */}
-        <div className="mt-12 text-center">
+        <div className="mt-4 text-center">
           <p className="text-xs text-gray-500">
             Copyright ©2025 - Insane Techno Labs
           </p>
