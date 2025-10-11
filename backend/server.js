@@ -38,14 +38,18 @@ console.log("MySQL connection pool created");
   const conn = await pool.getConnection();
   try { 
     await conn.query(`
-      CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
+            CREATE TABLE IF NOT EXISTS users (
+              id INT AUTO_INCREMENT PRIMARY KEY,
+              username VARCHAR(255) UNIQUE NOT NULL,
+              password VARCHAR(255) NOT NULL,
+              first_name VARCHAR(255) NOT NULL,
+              last_name VARCHAR(255) NOT NULL,
+              email VARCHAR(255) UNIQUE NOT NULL,
+              company_name VARCHAR(255),
+              phone_number VARCHAR(20),
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+              updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            )    `);
     console.log("✅ MySQL Connected and users table ensured");
   } catch (err) {
     console.error("❌ MySQL Connection Error:", err);
@@ -89,11 +93,11 @@ app.get("/health", (req, res) => {
 // Signup Route
 app.post("/signup", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, first_name, last_name, email, company_name, phone_number } = req.body;
 
     // Validate input
-    if (!username || !password) {
-      return res.status(400).json({ message: "Username and password are required" });
+    if (!username || !password || !first_name || !last_name || !email) {
+      return res.status(400).json({ message: "All required fields must be provided" });
     }
 
     if (password.length < 6) {
@@ -104,12 +108,15 @@ app.post("/signup", async (req, res) => {
     const conn = await pool.getConnection();
     
     try {
-      await conn.query("INSERT INTO users (username, password) VALUES (?, ?)", [username, hashedPassword]);
+      await conn.query(
+        "INSERT INTO users (username, password, first_name, last_name, email, company_name, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?)", 
+        [username, hashedPassword, first_name, last_name, email, company_name, phone_number]
+      );
       console.log("User registered:", username);
       res.status(201).json({ message: "✅ User registered successfully" });
     } catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
-        return res.status(400).json({ message: "❌ Username already exists" });
+        return res.status(400).json({ message: "❌ Username or email already exists" });
       } else {
         throw err;
       }
