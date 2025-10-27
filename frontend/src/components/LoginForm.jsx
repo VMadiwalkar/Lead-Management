@@ -48,7 +48,7 @@ export default function LoginForm() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="input pr-10"
               placeholder="Enter your email or mobile number"
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -69,7 +69,7 @@ export default function LoginForm() {
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="input pr-10"
               placeholder="Enter your password"
             />
             <button
@@ -107,7 +107,7 @@ export default function LoginForm() {
         {/* Sign In Button */}
         <button
           type="submit"
-          className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition duration-300 font-medium"
+          className="btn btn-primary btn-lg w-full"
         >
           Sign In
         </button>

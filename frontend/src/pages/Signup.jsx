@@ -62,7 +62,7 @@ export default function Signup() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="input mt-1"
                     placeholder="Your full name"
                   />
                 </div>
@@ -73,7 +73,7 @@ export default function Signup() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="input mt-1"
                     placeholder="name@company.com"
                   />
                 </div>
@@ -87,7 +87,7 @@ export default function Signup() {
                     type="tel"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="input mt-1"
                     placeholder="e.g. 9876543210"
                   />
                 </div>
@@ -99,7 +99,7 @@ export default function Signup() {
                     min="1"
                     value={companyHeadCount}
                     onChange={(e) => setCompanyHeadCount(e.target.value)}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="input mt-1"
                     placeholder="Number of employees"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function Signup() {
                     type="text"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="input mt-1"
                     placeholder="Your company name"
                   />
                 </div>
@@ -124,7 +124,7 @@ export default function Signup() {
                     type="url"
                     value={companyWebsite}
                     onChange={(e) => setCompanyWebsite(e.target.value)}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="input mt-1"
                     placeholder="https://example.com"
                   />
                 </div>
@@ -146,7 +146,7 @@ export default function Signup() {
               <button
                 type="submit"
                 disabled={!agree}
-                className="w-full bg-orange-500 disabled:opacity-60 disabled:cursor-not-allowed text-white py-2.5 rounded-md hover:bg-orange-600 transition"
+                className="btn btn-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 Sign Up
               </button>

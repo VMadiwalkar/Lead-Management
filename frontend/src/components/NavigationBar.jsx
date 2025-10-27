@@ -16,7 +16,7 @@ const NavigationBar = () => {
 
   return (
     <nav className="bg-white shadow-lg border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-padded">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
@@ -31,28 +31,24 @@ const NavigationBar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/dashboard"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                isActive('/dashboard') 
-                  ? 'text-blue-600 bg-blue-50' 
-                  : 'text-gray-700 hover:text-blue-600'
-              }`}
+              className={`nav-link ${isActive('/dashboard') ? 'nav-link-active' : ''}`}
             >
               Dashboard
             </Link>
             <button
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              className="nav-link"
               onClick={() => alert('Leads page coming soon!')}
             >
               Leads
             </button>
             <button
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              className="nav-link"
               onClick={() => alert('Analytics page coming soon!')}
             >
               Analytics
             </button>
             <button
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              className="nav-link"
               onClick={() => alert('Settings page coming soon!')}
             >
               Settings
@@ -112,17 +108,13 @@ const NavigationBar = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 border-t border-gray-200">
           <Link
             to="/dashboard"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              isActive('/dashboard') 
-                ? 'text-blue-600 bg-blue-50' 
-                : 'text-gray-700 hover:text-blue-600'
-            }`}
+            className={`block nav-link text-base ${isActive('/dashboard') ? 'nav-link-active' : ''}`}
             onClick={() => setIsMenuOpen(false)}
           >
             Dashboard
           </Link>
           <button
-            className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left"
+            className="block nav-link text-base w-full text-left"
             onClick={() => {
               alert('Leads page coming soon!');
               setIsMenuOpen(false);
@@ -131,7 +123,7 @@ const NavigationBar = () => {
             Leads
           </button>
           <button
-            className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left"
+            className="block nav-link text-base w-full text-left"
             onClick={() => {
               alert('Analytics page coming soon!');
               setIsMenuOpen(false);
@@ -140,7 +132,7 @@ const NavigationBar = () => {
             Analytics
           </button>
           <button
-            className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left"
+            className="block nav-link text-base w-full text-left"
             onClick={() => {
               alert('Settings page coming soon!');
               setIsMenuOpen(false);

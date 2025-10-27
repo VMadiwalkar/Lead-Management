@@ -1,3 +1,6 @@
+/* Project-wide reusable utilities and components */
+@import "./styles/utils.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
