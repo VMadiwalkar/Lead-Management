@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import NavigationBar from "../components/NavigationBar.jsx";
+import React from 'react';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import DefaultDashboard from './DefaultDashboard.jsx';
 
-export default function Dashboard() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios.get("http://localhost:5000/dashboard", {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => setMessage(res.data.message))
-    .catch(() => setMessage("❌ Unauthorized, please login again."));
-  }, []);
-
+const Dashboard = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <NavigationBar />
-      <div className="container-padded py-6">
-        <div className="px-0">
-          <div className="card-elevated">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h2>
-            <p className="text-lg text-gray-600">{message}</p>
-          </div>
-        </div>
+    <div className="flex h-screen bg-gray-100">
+      <Sidebar />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header />
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+          {children ? children : <DefaultDashboard />}
+        </main>
+        <footer className="bg-white p-2 border-t border-gray-200">
+          <p className="text-xs text-gray-500" style={{ marginLeft: '1rem' }}>
+            2025-2026 © Insane Techno Labs.
+          </p>
+        </footer>
       </div>
     </div>
   );
-}
+};
+
+export default Dashboard;
